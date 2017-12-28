@@ -1,0 +1,16 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" activiti:initiator="initiator" />
+
+		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
+		
+		<userTask id="theTask" name="My Task" activiti:assignee="${initiator}" />
+
+		<sequenceFlow id="flow2" sourceRef="theTask" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

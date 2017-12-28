@@ -1,0 +1,27 @@
+<definitions
+  xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:activiti="http://activiti.org/bpmn"
+  targetNamespace="Examples">
+
+  <process id="simpleProcess" name="My First Process">
+    <startEvent id="theStart" />
+
+	  <sequenceFlow id="flow1" sourceRef="theStart" targetRef="writeReportTask" />
+
+	  <userTask id="writeReportTask" name="My Task" >
+	    <documentation>
+	      Write monthly financial report for publication to shareholders.
+	    </documentation>
+	    <potentialOwner>
+	      <resourceAssignmentExpression>
+	        <formalExpression>accountancy</formalExpression>
+	      </resourceAssignmentExpression>
+	    </potentialOwner>
+	  </userTask>
+
+	  <sequenceFlow id="flow2" sourceRef="writeReportTask" targetRef="theEnd" />
+
+	  <endEvent id="theEnd" />
+  </process>
+
+</definitions>

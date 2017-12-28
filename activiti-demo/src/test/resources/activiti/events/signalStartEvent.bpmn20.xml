@@ -1,0 +1,20 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" 
+	targetNamespace="Examples">
+
+	<signal id="theSignal" name="The Signal" />
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart">
+			<signalEventDefinition id="theSignalEventDefinition" signalRef="theSignal" />
+		</startEvent>
+		
+		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
+		
+		<userTask id="theTask" name="My Task" />
+
+		<sequenceFlow id="flow2" sourceRef="theTask" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>
