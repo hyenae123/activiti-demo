@@ -23,13 +23,17 @@
 			<sequenceFlow id="subFlow1" sourceRef="subStart" targetRef="subTask" />
 			
 			<userTask id="subTask" name="Error Task" />
+			
+			<sequenceFlow id="subFlow2" sourceRef="subTask" targetRef="errorEnd" />
+			
+			<endEvent id="errorEnd" />
 		</subProcess>
 		
-		<sequenceFlow id="subFlow2" sourceRef="subProcess" targetRef="theTask2" />
+		<sequenceFlow id="flow3" sourceRef="subProcess" targetRef="theTask2" />
 		
 		<userTask id="theTask2" name="My Task2" />
 
-		<sequenceFlow id="flow3" sourceRef="theTask2" targetRef="theEnd2" />
+		<sequenceFlow id="flow4" sourceRef="theTask2" targetRef="theEnd2" />
 		
 		<endEvent id="theEnd2" />
 	</process>
