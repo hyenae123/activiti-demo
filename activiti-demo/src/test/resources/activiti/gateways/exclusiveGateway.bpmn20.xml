@@ -1,0 +1,32 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="gateway1" />
+
+		<exclusiveGateway id="gateway1" name="Exclusive Gateway" />
+		<sequenceFlow id="flow2" sourceRef="gateway1" targetRef="theTask1">
+			<conditionExpression xsi:type="tFormalExpression">${input == 1}</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id="flow3" sourceRef="gateway1" targetRef="theTask2">
+			<conditionExpression xsi:type="tFormalExpression">${input == 2}</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id="flow4" sourceRef="gateway1" targetRef="theTask3"/>
+		
+		<userTask id="theTask1" name="My Task1" />
+		<userTask id="theTask2" name="My Task2" />
+		<userTask id="theTask3" name="My Task3" />
+		
+		<sequenceFlow sourceRef="theTask1" targetRef="gateway2" />
+		<sequenceFlow sourceRef="theTask2" targetRef="gateway2" />
+		<sequenceFlow sourceRef="theTask3" targetRef="gateway2" />
+		
+		<exclusiveGateway id="gateway2" name="Exclusive Gateway" />
+		<sequenceFlow sourceRef="gateway2" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

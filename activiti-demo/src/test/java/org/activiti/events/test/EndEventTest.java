@@ -28,7 +28,7 @@ public class EndEventTest {
      *  when for example there is a multi-instance call activity or embedded subprocess, only that instance will be ended, the other instances and the process instance are not affected.
      */
     @Test
-    @Deployment(resources = "activiti/events/terminateEndEvent.bpmn20.xml")
+    @Deployment(resources = "activiti/events/end/terminateEndEvent.bpmn20.xml")
     public void testTerminateEndEvent() {
         RuntimeService runtimeService = activitiRule.getRuntimeService();
         IdentityService identityService = activitiRule.getIdentityService();

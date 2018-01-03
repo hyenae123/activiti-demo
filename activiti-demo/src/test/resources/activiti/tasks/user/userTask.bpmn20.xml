@@ -2,17 +2,11 @@
 	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
 
 	<process id="myProcess" name="My Process">
-		<startEvent id="theStart">
-			<timerEventDefinition>
-				<!-- Example: process will start 4 times, in 5 minute intervals, starting on 11th march 2011, 12:13 -->
-				<!-- <timeCycle>R4/2017-12-28T03:24/PT5M</timeCycle> -->
-				<timeCycle>0/5 * * * * ?</timeCycle>
-			</timerEventDefinition>
-		</startEvent>
-		
+		<startEvent id="theStart" activiti:initiator="initiator" />
+
 		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
 		
-		<userTask id="theTask" name="My Task" />
+		<userTask id="theTask" name="My Task" activiti:assignee="${initiator}" />
 
 		<sequenceFlow id="flow2" sourceRef="theTask" targetRef="theEnd" />
 		

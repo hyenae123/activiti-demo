@@ -1,0 +1,20 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+
+		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="timer" />
+		
+		<intermediateCatchEvent id="timer">
+			<timerEventDefinition>
+				<timeDuration>PT5S</timeDuration>
+			</timerEventDefinition>
+		</intermediateCatchEvent>
+		
+		<sequenceFlow sourceRef="timer" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

@@ -51,7 +51,7 @@ public class StartEventTest {
      * Note: a subprocess always has a none start event.
      */
     @Test
-    @Deployment(resources = "activiti/events/noneStartEvent.bpmn20.xml")
+    @Deployment(resources = "activiti/events/start/noneStartEvent.bpmn20.xml")
     public void testNoneStartEvent() {
         ProcessInstance processInstance = activitiRule.getRuntimeService().startProcessInstanceByKey("myProcess");
         
@@ -77,7 +77,7 @@ public class StartEventTest {
      * @throws InterruptedException
      */
     @Test
-    @Deployment(resources = "activiti/events/timerStartEvent.bpmn20.xml")
+    @Deployment(resources = "activiti/events/start/timerStartEvent.bpmn20.xml")
     public void testTimerStartEvent() throws InterruptedException {
         ProcessEngineConfiguration procEngineCfg = activitiRule.getProcessEngine().getProcessEngineConfiguration();
         assertTrue(procEngineCfg.isAsyncExecutorActivate());
@@ -93,7 +93,7 @@ public class StartEventTest {
     }
     
     @Test
-    @Deployment(resources ="activiti/events/messageStartEvent.bpmn20.xml")
+    @Deployment(resources ="activiti/events/start/messageStartEvent.bpmn20.xml")
     public void testMessageStartEvent() {
         ProcessInstance processInstance = activitiRule.getRuntimeService().startProcessInstanceByMessage("newInvoiceMessage");
         assertNotNull(processInstance);
@@ -106,7 +106,7 @@ public class StartEventTest {
      * or through the API (runtimeService.signalEventReceivedXXX methods)
      */
     @Test
-    @Deployment(resources = "activiti/events/signalStartEvent.bpmn20.xml")
+    @Deployment(resources = "activiti/events/start/signalStartEvent.bpmn20.xml")
     public void testSignalStartEvent() {
         //TODO what is the execution
         List<Execution> executions = activitiRule.getRuntimeService().createExecutionQuery()
@@ -124,7 +124,7 @@ public class StartEventTest {
     }
     
     @Test
-    @Deployment(resources = "activiti/events/errorStartEvent.bpmn20.xml")
+    @Deployment(resources = "activiti/events/start/errorStartEvent.bpmn20.xml")
     public void testErrorStartEvent() {
         ProcessInstance processInstance = activitiRule.getRuntimeService().startProcessInstanceByKey("myProcess");
         log.info("Process Instance: {}", processInstance.getProcessDefinitionName());

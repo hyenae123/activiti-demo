@@ -1,0 +1,36 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<signal id="theSignal" name="alert" />
+	
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+		<sequenceFlow sourceRef="theStart" targetRef="gateway1" />
+		
+		<eventBasedGateway id="gateway1" />
+		<sequenceFlow sourceRef="gateway1" targetRef="signalEvent" />
+		<sequenceFlow sourceRef="gateway1" targetRef="timerEvent" />
+		
+		<intermediateCatchEvent id="signalEvent">
+			<signalEventDefinition signalRef="theSignal" />
+		</intermediateCatchEvent>
+		<intermediateCatchEvent id="timerEvent">
+			<timerEventDefinition>
+				<timeDuration>PT5S</timeDuration>
+			</timerEventDefinition>
+		</intermediateCatchEvent>
+		
+		<sequenceFlow sourceRef="signalEvent" targetRef="theTask" />
+		<userTask id="theTask" name="My Task1" />
+		
+		<sequenceFlow sourceRef="timerEvent" targetRef="gateway2" />
+		<sequenceFlow sourceRef="theTask" targetRef="gateway2" />
+		
+		<exclusiveGateway id="gateway2" />
+		<sequenceFlow sourceRef="gateway2" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

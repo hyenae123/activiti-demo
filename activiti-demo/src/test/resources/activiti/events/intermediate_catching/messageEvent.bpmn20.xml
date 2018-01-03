@@ -1,0 +1,19 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<message id="theMessage" name="message" />
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+
+		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="intermediate" />
+		
+		<intermediateCatchEvent id="intermediate">
+			<messageEventDefinition messageRef="theMessage" />
+		</intermediateCatchEvent>
+		
+		<sequenceFlow sourceRef="intermediate" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>
