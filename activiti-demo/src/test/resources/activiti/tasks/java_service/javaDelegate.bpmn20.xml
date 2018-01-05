@@ -1,0 +1,16 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+		<sequenceFlow sourceRef="theStart" targetRef="theTask" />
+		
+		<serviceTask id="theTask" name="My Task" 
+			activiti:class="org.activiti.tasks.test.delegate.MyJavaDelegate">
+		</serviceTask>
+		<sequenceFlow sourceRef="theTask" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

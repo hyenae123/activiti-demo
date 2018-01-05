@@ -1,0 +1,25 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="myProcess" name="My Process">
+		<startEvent id="theStart" />
+		<sequenceFlow sourceRef="theStart" targetRef="script" />
+		
+		<scriptTask id="script" name="Execute script" 
+			scriptFormat="JavaScript" 
+			activiti:autoStoreVariables="false">
+			
+			<script>
+				sum = 0
+				for (i in inputArray) {
+					sum += inputArray[i]
+				}
+				execution.setVariable("result", sum)
+			</script>
+		</scriptTask>
+		<sequenceFlow sourceRef="script" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>

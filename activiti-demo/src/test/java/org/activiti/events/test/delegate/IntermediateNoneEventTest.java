@@ -1,4 +1,4 @@
-package org.activiti.events.test;
+package org.activiti.events.test.delegate;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.ExecutionListener;

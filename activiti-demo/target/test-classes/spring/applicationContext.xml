@@ -59,4 +59,6 @@
 	<bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
 		<property name="processEngine" ref="processEngine" />
 	</bean>
+	
+	<bean id="delegateExpressionBean" class="org.activiti.tasks.test.delegate.MyJavaDelegate" />
 </beans>

@@ -1,0 +1,17 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="eatDogFood" name="Eat Dog Food">
+		<startEvent id="theStart" />
+		<sequenceFlow sourceRef="theStart" targetRef="theTask" />
+		
+		<userTask id="theTask" name="My Task" 
+			activiti:assignee="dog" 
+			activiti:candidateUsers="cat" 
+			activiti:candidateGroups="human" />
+		<sequenceFlow sourceRef="theTask" targetRef="theEnd" />
+		
+		<endEvent id="theEnd" />
+	</process>
+
+</definitions>
