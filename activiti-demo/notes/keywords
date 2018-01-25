@@ -1,0 +1,15 @@
+form、owner、variable、query
+
+form
+内置表单和外置表单
+外置表单方便复用，内置表单方便校验
+
+variable
+task、process、transient
+transient 在两个 activity 之间有效，不会保存到 history 里
+
+owner/assignee
+claim、delegateTask、resolveTask、complete
+
+native query
+使用 @Selete，或写 xml

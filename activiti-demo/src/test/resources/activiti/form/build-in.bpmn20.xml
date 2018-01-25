@@ -1,0 +1,26 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples">
+
+	<process id="process">
+		<startEvent id="theStart1" activiti:initiator="initiator" />
+		<sequenceFlow sourceRef="theStart1" targetRef="theTask1" />
+		
+		<userTask id="theTask1" name="My Task1">
+			<extensionElements>
+				<activiti:formProperty id="room" />
+				<activiti:formProperty id="duration" type="long" />
+				<activiti:formProperty id="speaker" variable="SpeakerName" writable="false" />
+				<activiti:formProperty id="street" required="true" />
+			</extensionElements>
+		</userTask>
+		<sequenceFlow sourceRef="theTask1" targetRef="theTask2" />
+		
+		<userTask id="theTask2" name="My Task2" activiti:assignee="${var1}" />
+		<sequenceFlow sourceRef="theTask2" targetRef="theTask3" />
+		
+		<userTask id="theTask3" name="My Task3" activiti:assignee="${var1}" />
+		<sequenceFlow sourceRef="theTask3" targetRef="theEnd1" />
+		
+		<endEvent id="theEnd1" />
+	</process>
+</definitions>

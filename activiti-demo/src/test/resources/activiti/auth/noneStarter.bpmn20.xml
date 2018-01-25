@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+	xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+	xmlns:activiti="http://activiti.org/bpmn" 
+	typeLanguage="http://www.w3.org/2001/XMLSchema"
+	expressionLanguage="http://www.w3.org/1999/XPath"
+	targetNamespace="Examples">
+
+	<process id="process1" name="Process 1">
+		<startEvent id="theStart1" activiti:initiator="initiator" />
+
+		<sequenceFlow sourceRef="theStart1" targetRef="theTask1" />
+		
+		<userTask id="theTask1" name="My Task1">
+			<extensionElements>
+				<activiti:taskListener event="create" class="org.activiti.auth.test.listener.MyAssignmentHandler"></activiti:taskListener>
+			</extensionElements>
+		</userTask>
+
+		<sequenceFlow sourceRef="theTask1" targetRef="theEnd1" />
+		
+		<endEvent id="theEnd1" />
+	</process>
+	
+	<process id="process2" name="Process 2">
+		<startEvent id="theStart2" activiti:initiator="initiator" />
+
+		<sequenceFlow sourceRef="theStart2" targetRef="theTask2" />
+
+		<userTask id="theTask2" name="My Task2">
+			<extensionElements>
+				<activiti:taskListener event="create" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+					<activiti:field name="script">
+						<activiti:string>
+					      task.setOwner("kermit");
+					    </activiti:string>
+					</activiti:field>
+					<activiti:field name="language" stringValue="javascript" />
+				</activiti:taskListener>
+			</extensionElements>
+		</userTask>
+
+		<sequenceFlow sourceRef="theTask2" targetRef="theEnd2" />
+		
+		<endEvent id="theEnd2" />
+	</process>
+</definitions>
